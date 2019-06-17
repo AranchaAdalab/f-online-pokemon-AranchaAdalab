@@ -1,13 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-class App extends React.Component() {
-  constructor (props) {
+class App extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       arrPokemon: []
-    }
+    };
     this.getPokemon = this.getPokemon.bind(this);
   }
 
@@ -16,29 +15,51 @@ class App extends React.Component() {
   }
 
   getPokemon() {
-    const ENDPOINT = 'http://hp-api.herokuapp.com/api/characters';
+    const ENDPOINT = "https://pokeapi.co/api/v2/pokemon/?limit=25";
     fetch(ENDPOINT)
-    .then(response => response.json())
-    .then(data => {
-      const newArr = data.map((character, index) => {
-        const patronus = character.patronus.charAt(0).toUpperCase() + character.patronus.slice(1)
-        const house = character.house === '' ? 'Ninguna' : character.house
-        return { ...character, id: `hogwartsid-${index}`, patronus: patronus, house: house };
+      .then(response => response.json())
+      .then(data => {
+        data.results.map(itemPokemon => {
+          return fetch(itemPokemon.url)
+            .then(secondaryResponse => secondaryResponse.json())
+            .then(secondaryData => {
+              const finalArr = this.state.arrPokemon;
+              finalArr.push(secondaryData);
+              this.setState({
+                arrPokemon: finalArr
+              });
+            });
+        });
       });
-      this.setState({
-        arrPokemon: newArr,
-      })
-    });
   }
 
   render() {
+    const arrPokemon = this.state.arrPokemon;
     return (
       <div className="App">
-        
+        <ul className="character_list">
+          {arrPokemon
+            // .filter(character =>
+            //   character.name.toLowerCase().includes(inputValue.toLowerCase())
+            // )
+            .map(pokemon => {
+              return (
+                <li className="character" key={pokemon.id}>
+                  <div className="character_image_container">
+                    <img
+                      className="character_image"
+                      src={pokemon.sprites.front_default}
+                      alt={pokemon.name}
+                    />
+                  </div>
+                  <h2 className="character_name">{pokemon.name}</h2>
+                </li>
+              );
+            })}
+        </ul>
       </div>
     );
   }
-  
 }
 
 export default App;
