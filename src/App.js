@@ -1,13 +1,17 @@
 import React from "react";
-import "./App.css";
+import Filter from "./components/Filter";
+import PokemonList from "./components/PokemonList";
+import "./App.scss";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrPokemon: []
+      arrPokemon: [],
+      inputValue: ''
     };
     this.getPokemon = this.getPokemon.bind(this);
+    this.getInput = this.getInput.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +29,7 @@ class App extends React.Component {
             .then(secondaryData => {
               const finalArr = this.state.arrPokemon;
               finalArr.push(secondaryData);
+              finalArr.sort((a, b) => a.id - b.id);
               this.setState({
                 arrPokemon: finalArr
               });
@@ -33,30 +38,19 @@ class App extends React.Component {
       });
   }
 
+  getInput(event) {
+    const guilty = event.currentTarget.value;
+    this.setState ({
+      inputValue: guilty
+    })
+  } 
+
   render() {
-    const arrPokemon = this.state.arrPokemon;
+    const {arrPokemon, inputValue} = this.state;
     return (
       <div className="App">
-        <ul className="character_list">
-          {arrPokemon
-            // .filter(character =>
-            //   character.name.toLowerCase().includes(inputValue.toLowerCase())
-            // )
-            .map(pokemon => {
-              return (
-                <li className="character" key={pokemon.id}>
-                  <div className="character_image_container">
-                    <img
-                      className="character_image"
-                      src={pokemon.sprites.front_default}
-                      alt={pokemon.name}
-                    />
-                  </div>
-                  <h2 className="character_name">{pokemon.name}</h2>
-                </li>
-              );
-            })}
-        </ul>
+        <Filter getInput={this.getInput}/>
+        <PokemonList arrPokemon={arrPokemon} inputValue={inputValue}/>
       </div>
     );
   }
