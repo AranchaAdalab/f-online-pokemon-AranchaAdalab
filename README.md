@@ -1,4 +1,4 @@
-## Pokédex for Adalab
+## Pokédex para Adalab
 
 Esta es la primera de las siete pruebas técnicas que forman el bloque de formación online de Adalab. Consiste en una pequeña enciclopedia de Pokémon con un buscador por nombre que da, en esta primera fase, 25 resultados. La ficha de detalle de cada Pokémon cuenta con el nombre, la fotografía, el número y el tipo (o tipos) de cada uno. 
 
@@ -46,6 +46,7 @@ ___Index.scss
 
 
 ## Si quieres disfrutar de la aplicación o mejorarla puedes clonar el respositorio con el siguiente enlace
+https://github.com/Adalab/f-online-pokemon-AranchaAdalab.git
 
 **Nota: no olvides ejecutar npm install**
 
