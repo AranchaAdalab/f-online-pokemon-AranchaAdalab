@@ -7,6 +7,7 @@ class Home extends React.Component {
     const { getInput, arrPokemon, inputValue } = this.props;
     return (
       <React.Fragment>
+        <h1 className="title">Pokédex</h1>
         <Filter getInput={getInput} />
         <PokemonList arrPokemon={arrPokemon} inputValue={inputValue} />
       </React.Fragment>
