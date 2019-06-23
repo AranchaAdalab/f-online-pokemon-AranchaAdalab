@@ -16,9 +16,11 @@ class PokemonList extends React.Component {
             return (
               <PokemonItem
                 id={pokemon.id}
+                key={pokemon.id}
                 image={pokemon.sprites.front_default}
                 name={pokemon.name}
                 types={pokemon.types}
+                evolution={pokemon.evolution}
               />
             );
           })}

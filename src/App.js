@@ -25,11 +25,23 @@ class App extends React.Component {
         return fetch(itemPokemon.url)
           .then(secondaryResponse => secondaryResponse.json())
           .then(secondaryData => {
-            const finalArr = this.state.arrPokemon;
+            const finalArr = [];
             finalArr.push(secondaryData);
-            finalArr.sort((a, b) => a.id - b.id);
-            this.setState({
-              arrPokemon: finalArr
+            finalArr.map(item => {
+              return fetch(item.species.url)
+                .then(thirdResponse => thirdResponse.json())
+                .then(thirdData => {
+                  const superFinalArr = this.state.arrPokemon;
+                  const evolution = thirdData.evolves_from_species;
+                  const pokEvolution = {
+                      ...item, evolution: evolution
+                    };
+                    superFinalArr.push(pokEvolution)
+                    superFinalArr.sort((a, b) => a.id - b.id);
+                  this.setState({
+                    arrPokemon: superFinalArr
+                  });
+                });
             });
           });
       });
