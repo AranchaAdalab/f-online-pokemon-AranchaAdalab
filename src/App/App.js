@@ -1,8 +1,9 @@
 import React from "react";
-import Filter from "../Filter/Filter";
-import PokemonList from "../PokemonList/PokemonList";
+import Home from "../Home";
+import PokemonDetail from "../PokemonDetail/PokemonDetail";
 import { fetchPokemon } from "../Services/Petition";
 import "./App.scss";
+import { Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -45,11 +46,14 @@ class App extends React.Component {
                       .then(fourthResponse => fourthResponse.json())
                       .then(fourthData => {
                         const reSuperFinalArr = this.state.arrPokemon;
-                        const evolutionToNameBaby = fourthData.chain.evolves_to[0];
-                        const evolutionToNameAdult = fourthData.chain.evolves_to[0].evolves_to[0];
+                        const evolutionToNameBaby =
+                          fourthData.chain.evolves_to[0];
+                        const evolutionToNameAdult =
+                          fourthData.chain.evolves_to[0].evolves_to[0];
                         const pokAllEvolution = {
                           ...item,
-                          evolutionToNameBaby: evolutionToNameBaby, evolutionToNameAdult: evolutionToNameAdult
+                          evolutionToNameBaby: evolutionToNameBaby,
+                          evolutionToNameAdult: evolutionToNameAdult
                         };
                         reSuperFinalArr.push(pokAllEvolution);
                         reSuperFinalArr.sort((a, b) => a.id - b.id);
@@ -76,8 +80,28 @@ class App extends React.Component {
     const { arrPokemon, inputValue } = this.state;
     return (
       <div className="App">
-        <Filter getInput={this.getInput} />
-        <PokemonList arrPokemon={arrPokemon} inputValue={inputValue} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                getInput={this.getInput}
+                arrPokemon={arrPokemon}
+                inputValue={inputValue}
+              />
+            )}
+          />
+          <Route
+            path="/pokemon_detail/:id"
+            render={routerProps => (
+              <PokemonDetail
+                match={routerProps.match}
+                arrPokemon={arrPokemon}
+              />
+            )}
+          />
+        </Switch>
       </div>
     );
   }
