@@ -1,7 +1,7 @@
 import React from "react";
 import Filter from "../Filter/Filter";
 import PokemonList from "../PokemonList/PokemonList";
-import { fetchPokemon } from "../services/Petition";
+import { fetchPokemon } from "../Services/Petition";
 import "./App.scss";
 
 class App extends React.Component {
