@@ -20,7 +20,9 @@ class PokemonList extends React.Component {
                 image={pokemon.sprites.front_default}
                 name={pokemon.name}
                 types={pokemon.types}
-                evolution={pokemon.evolution}
+                evolutionFrom={pokemon.evolutionFrom}
+                evolutionToNameBaby={pokemon.evolutionToNameBaby}
+                evolutionToNameAdult={pokemon.evolutionToNameAdult}
               />
             );
           })}

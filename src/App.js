@@ -31,15 +31,34 @@ class App extends React.Component {
               return fetch(item.species.url)
                 .then(thirdResponse => thirdResponse.json())
                 .then(thirdData => {
-                  const superFinalArr = this.state.arrPokemon;
-                  const evolution = thirdData.evolves_from_species;
+                  console.log(thirdData);
+                  const superFinalArr = [];
+                  const evolutionFrom = thirdData.evolves_from_species;
+                  const evolutionToUrl = thirdData.evolution_chain.url;
+                  
                   const pokEvolution = {
-                      ...item, evolution: evolution
-                    };
-                    superFinalArr.push(pokEvolution)
-                    superFinalArr.sort((a, b) => a.id - b.id);
-                  this.setState({
-                    arrPokemon: superFinalArr
+                    ...item,
+                    evolutionFrom: evolutionFrom,
+                    evolutionToUrl: evolutionToUrl
+                  };
+                  superFinalArr.push(pokEvolution);
+                  superFinalArr.map(item => {
+                    return fetch(item.evolutionToUrl)
+                      .then(fourthResponse => fourthResponse.json())
+                      .then(fourthData => {
+                        const reSuperFinalArr = this.state.arrPokemon;
+                        const evolutionToNameBaby = fourthData.chain.evolves_to[0];
+                        const evolutionToNameAdult = fourthData.chain.evolves_to[0].evolves_to[0];
+                        const pokAllEvolution = {
+                          ...item,
+                          evolutionToNameBaby: evolutionToNameBaby, evolutionToNameAdult: evolutionToNameAdult
+                        };
+                        reSuperFinalArr.push(pokAllEvolution);
+                        reSuperFinalArr.sort((a, b) => a.id - b.id);
+                        this.setState({
+                          arrPokemon: reSuperFinalArr
+                        });
+                      });
                   });
                 });
             });
