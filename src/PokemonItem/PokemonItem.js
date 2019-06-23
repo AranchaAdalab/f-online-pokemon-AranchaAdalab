@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheets/PokemonItem.scss";
+import "./PokemonItem.scss";
 import PropTypes from "prop-types";
 
 class PokemonItem extends React.Component {
@@ -31,7 +31,10 @@ PokemonItem.propTypes = {
   id: PropTypes.number,
   image: PropTypes.string,
   name: PropTypes.string,
-  types: PropTypes.array
+  types: PropTypes.array,
+  evolutionFrom: PropTypes.object,
+  evolutionToNameBaby: PropTypes.object,
+  evolutionToNameAdult: PropTypes.object
 };
 
 export default PokemonItem;

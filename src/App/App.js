@@ -1,7 +1,7 @@
 import React from "react";
-import Filter from "./components/Filter";
-import PokemonList from "./components/PokemonList";
-import { fetchPokemon } from "./components/Petition";
+import Filter from "../Filter/Filter";
+import PokemonList from "../PokemonList/PokemonList";
+import { fetchPokemon } from "../services/Petition";
 import "./App.scss";
 
 class App extends React.Component {
@@ -31,11 +31,9 @@ class App extends React.Component {
               return fetch(item.species.url)
                 .then(thirdResponse => thirdResponse.json())
                 .then(thirdData => {
-                  console.log(thirdData);
                   const superFinalArr = [];
                   const evolutionFrom = thirdData.evolves_from_species;
                   const evolutionToUrl = thirdData.evolution_chain.url;
-                  
                   const pokEvolution = {
                     ...item,
                     evolutionFrom: evolutionFrom,

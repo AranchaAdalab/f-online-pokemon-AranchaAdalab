@@ -18,27 +18,39 @@ Una tercera fase en la que dar estilos a la aplicación.
 
 src
 
-___components
+___App
+
+-------------App.js
+
+-------------App.scss
+
+___Filter
 
 -------------Filter.js
 
--------------Petition.js
+-------------Filter.scss
+
+___PokemonDetail
+
+-------------PokemonDetail.js
+
+-------------PokemonDetail.scss
+
+___PokemonItem
 
 -------------PokemonItem.js
 
--------------PokemonList.js
-
-___stylesheets
-
--------------Filter.scss
-
 -------------PokemonItem.scss
+
+___PokemonList
+
+-------------PokemonList.js
 
 -------------PokemonList.scss
 
-___App.js
+___Services
 
-___App.scss
+-------------Petition.js
 
 ___Index.js
 

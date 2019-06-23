@@ -1,6 +1,6 @@
 import React from "react";
-import PokemonItem from "./PokemonItem";
-import "../stylesheets/PokemonList.scss";
+import PokemonItem from "../PokemonItem/PokemonItem";
+import "./PokemonList.scss";
 import PropTypes from "prop-types";
 
 class PokemonList extends React.Component {
