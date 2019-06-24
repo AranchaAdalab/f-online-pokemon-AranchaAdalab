@@ -14,6 +14,7 @@ class App extends React.Component {
     };
     this.getPokemon = this.getPokemon.bind(this);
     this.getInput = this.getInput.bind(this);
+    this.getReset = this.getReset.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +77,12 @@ class App extends React.Component {
     });
   }
 
+  getReset() {
+    this.setState({
+      inputValue: ""
+    })
+  }
+
   render() {
     const { arrPokemon, inputValue } = this.state;
     return (
@@ -98,6 +105,7 @@ class App extends React.Component {
               <PokemonDetail
                 match={routerProps.match}
                 arrPokemon={arrPokemon}
+                getReset={this.getReset}
               />
             )}
           />
