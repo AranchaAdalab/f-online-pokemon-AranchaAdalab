@@ -9,17 +9,18 @@ class PokemonDetail extends React.Component {
     const pokemonCard =
       arrPokemon.length &&
       arrPokemon.find(item => item.id === parseInt(pokemonId));
-    const id = pokemonCard.id;
-    const frontImage = pokemonCard.sprites.front_default;
-    const backImage = pokemonCard.sprites.back_default;
-    const name = pokemonCard.name;
-    const types = pokemonCard.types;
-    const height = pokemonCard.height;
-    const weight = pokemonCard.weight;
-    const abilities = pokemonCard.abilities;
-    const evolutionFrom = pokemonCard.evolutionFrom;
-    const evolutionToNameBaby = pokemonCard.evolutionToNameBaby;
-    const evolutionToNameAdult = pokemonCard.evolutionToNameAdult;
+      console.log(pokemonCard);
+    const id = pokemonCard && pokemonCard.id;
+    const frontImage = pokemonCard && pokemonCard.sprites.front_default;
+    const backImage = pokemonCard && pokemonCard.sprites.back_default;
+    const name = pokemonCard && pokemonCard.name;
+    const types = pokemonCard && pokemonCard.types;
+    const height = pokemonCard && pokemonCard.height;
+    const weight = pokemonCard && pokemonCard.weight;
+    const abilities = pokemonCard && pokemonCard.abilities;
+    const evolutionFrom = pokemonCard && pokemonCard.evolutionFrom;
+    const evolutionToNameBaby = pokemonCard && pokemonCard.evolutionToNameBaby;
+    const evolutionToNameAdult = pokemonCard && pokemonCard.evolutionToNameAdult;
     return (
       <React.Fragment>
         {pokemonCard ? (
