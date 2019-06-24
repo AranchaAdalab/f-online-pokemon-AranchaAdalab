@@ -4,7 +4,7 @@
     margin: 5px;
     width: 130px;
     background-color: alpha($color: #000000);
-    transition: background-color ease 0.8s, width ease 0.8s;
+    transition: background-color ease 0.3s, width ease 0.3s;
     &:hover {
         background-color: rgba(255, 235, 205, 0.452);
         width: 135px;
