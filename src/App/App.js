@@ -101,13 +101,16 @@ class App extends React.Component {
           />
           <Route
             path="/pokemon_detail/:id"
-            render={routerProps => (
+            render={routerProps => {
+              const pokemonCard = arrPokemon.length && arrPokemon.find(item => item.id === parseInt(routerProps.match.params.id))
+              return (pokemonCard ?
               <PokemonDetail
-                match={routerProps.match}
-                arrPokemon={arrPokemon}
+                {...pokemonCard}
                 getReset={this.getReset}
               />
+              : <p>Cargando datos</p>
             )}
+          }
           />
         </Switch>
       </div>

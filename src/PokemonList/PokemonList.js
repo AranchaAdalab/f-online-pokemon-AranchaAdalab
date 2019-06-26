@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 class PokemonList extends React.Component {
   render() {
-    const { arrPokemon, inputValue } = this.props;
+    const { arrPokemon, inputValue, } = this.props;
     return (
       <ul className="pokemon__list">
         {arrPokemon
@@ -17,6 +17,7 @@ class PokemonList extends React.Component {
             return (
               <Link className="pokemon__item_link" to={`/pokemon_detail/${pokemon.id}`} key={pokemon.id}>
                 <PokemonItem 
+                  arrPokemon={arrPokemon}
                   id={pokemon.id}
                   key={pokemon.id}
                   image={pokemon.sprites.front_default}
