@@ -6,13 +6,10 @@ import PropTypes from "prop-types";
 
 class PokemonList extends React.Component {
   render() {
-    const { arrPokemon, inputValue, } = this.props;
+    const { arrPokemon } = this.props;
     return (
       <ul className="pokemon__list">
         {arrPokemon
-          .filter(pokemon =>
-            pokemon.name.toLowerCase().includes(inputValue.toLowerCase())
-          )
           .map(pokemon => {
             return (
               <Link className="pokemon__item_link" to={`/pokemon_detail/${pokemon.id}`} key={pokemon.id}>

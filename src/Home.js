@@ -9,7 +9,11 @@ class Home extends React.Component {
       <React.Fragment>
         <h1 className="title">Pokédex</h1>
         <Filter getInput={getInput} />
-        <PokemonList arrPokemon={arrPokemon} inputValue={inputValue} />
+        <PokemonList
+          arrPokemon={arrPokemon.filter(pokemon =>
+            pokemon.name.toLowerCase().includes(inputValue.toLowerCase())
+          )}
+        />
       </React.Fragment>
     );
   }
